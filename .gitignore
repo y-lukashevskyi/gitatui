@@ -1,0 +1,26 @@
+# Rust build artifacts
+/target/
+
+# Cargo.lock — keep it for binaries (like your TUI app), ignore for libraries
+# Since ratatui apps are binaries, you should COMMIT Cargo.lock, so don't add it here.
+
+# Backup files from rustfmt
+**/*.rs.bk
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Env files (if you ever use them)
+.env
+.env.local
+
+# Debug logs you might write while developing a TUI
+*.log
