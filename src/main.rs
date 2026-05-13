@@ -66,9 +66,13 @@ fn style_line(str: &str) -> Style {
             .fg(Color::Blue)
             .add_modifier(Modifier::BOLD)
     } else if str.starts_with("+") {
-        Style::default().fg(Color::Green)
+        Style::default()
+            .fg(Color::LightGreen)
+            .bg(Color::Rgb(0x10, 0x20, 0x10))
     } else if str.starts_with("-") {
-        Style::default().fg(Color::Red)
+        Style::default()
+            .fg(Color::LightRed)
+            .bg(Color::Rgb(0x20, 0x10, 0x10))
     } else if str.starts_with("@@") {
         Style::default().fg(Color::Cyan)
     } else {

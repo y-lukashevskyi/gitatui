@@ -19,6 +19,33 @@
 - [x] Refactor: extract state into an `App` struct
 - [x] Refactor: move line-styling logic into its own function
 
+## Global menu
+
+Approach A: a `View` enum (`Menu`, `LocalDiff`, `RemoteDiff`, `Pulls`) plus
+flat state on `App`. Full-screen replacement (no overlay). `q` is contextual —
+quits from the menu, returns to the menu from any view.
+
+- [ ] Add `View` enum and `view: View` field on `App`; default to `View::Menu`
+- [ ] Add `menu_selected: usize` (or `ListState`) for highlighted item
+- [ ] Render menu screen with the `List` widget and `ListState`
+- [ ] Dispatch in event loop and renderer with `match app.view`
+- [ ] Generalize `get_git_diff` to take args (so local vs `origin/main` reuses it)
+- [ ] Wire menu → LocalDiff: shell out, populate `diff_lines`, switch view
+- [ ] Wire menu → RemoteDiff (`origin/main`): same flow, different args
+- [ ] Add `Pulls` placeholder screen ("Coming soon")
+- [ ] Add `back_to_menu` on `q`/`Esc` from any non-menu view
+- [ ] Reset `scroll_offset` when entering a diff view
+- [ ] Update status bar hints per view
+
+### Deferred (low-priority)
+
+- [ ] Refactor to Approach B: per-variant data on `View` enum
+      (e.g. `View::LocalDiff { lines, scroll }`) so unrelated state can't be
+      accessed in the wrong view
+- [ ] Cache diffs across menu re-entries instead of re-shelling git each time
+- [ ] Diff against arbitrary refs, not just `origin/main`
+- [ ] Real Pulls implementation (via `gh` CLI or GitHub API)
+
 ## File navigation
 
 - [ ] Run `git diff --name-only` to get the list of changed files
@@ -33,6 +60,11 @@
 - [ ] Handle the case where the current directory is not a git repository
 - [ ] Handle the case where there are no changes (empty diff)
 - [ ] Add horizontal scrolling for long lines
+- [ ] Fill `+`/`-` line background to viewport edge (pad lines to width at
+      render time so the bg color spans the full row)
+- [ ] Add a line-number gutter (parse hunk headers `@@ -X,Y +A,B @@` and
+      track old/new line counters per hunk)
+- [ ] Add a two-char status column (`--`, `+-`, `+`) next to the gutter
 - [ ] Show current branch name in the header
 - [ ] Show staged vs. unstaged indicator per file
 
