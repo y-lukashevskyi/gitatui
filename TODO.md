@@ -9,13 +9,15 @@
 
 ## Diff viewer
 
-- [ ] Add scrolling (`j`/`k` and arrow keys, `q` to quit)
-- [ ] Add a status bar at the bottom with keybinding hints
+- [x] Add scrolling (`j`/`k` and arrow keys, `q` to quit)
+- [x] Add a status bar at the bottom with keybinding hints
 - [x] Fix line styling order so `+++`/`---` and `diff --git` headers don't get
       miscolored as additions/deletions
-- [ ] Clamp scroll position to the actual diff length
-- [ ] Refactor: extract state into an `App` struct
-- [ ] Refactor: move line-styling logic into its own function
+- [x] Clamp scroll position to the actual diff length
+- [x] Make scroll clamp viewport-aware so the last line pins to the bottom
+      instead of scrolling off the top
+- [x] Refactor: extract state into an `App` struct
+- [x] Refactor: move line-styling logic into its own function
 
 ## File navigation
 
