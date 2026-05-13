@@ -11,7 +11,7 @@
 
 - [ ] Add scrolling (`j`/`k` and arrow keys, `q` to quit)
 - [ ] Add a status bar at the bottom with keybinding hints
-- [ ] Fix line styling order so `+++`/`---` and `diff --git` headers don't get
+- [x] Fix line styling order so `+++`/`---` and `diff --git` headers don't get
       miscolored as additions/deletions
 - [ ] Clamp scroll position to the actual diff length
 - [ ] Refactor: extract state into an `App` struct

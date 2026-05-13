@@ -29,6 +29,11 @@ fn get_diff_chunks(diff: &str) -> Vec<Line> {
                         .fg(Color::Yellow)
                         .add_modifier(Modifier::BOLD),
                 )
+            } else if str.starts_with("+++ ") || str.starts_with("--- ") {
+                Line::from(str)
+                    .style(Style::default())
+                    .fg(Color::Blue)
+                    .add_modifier(Modifier::BOLD)
             } else if str.starts_with("+") {
                 Line::from(str).style(Style::default().fg(Color::Green))
             } else if str.starts_with("-") {
